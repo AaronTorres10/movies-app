@@ -8,7 +8,7 @@ export const popularMoviesAction = async () => {
 
     const movies = data.results.map(MovieMapper.fromTheMovieDBToMovie);
 
-    console.log(movies);
+    //console.log(movies);
 
     //console.log(JSON.stringify(data, null, 2));
     return movies;
