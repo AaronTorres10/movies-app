@@ -1,14 +1,24 @@
 import { useLocalSearchParams } from "expo-router";
-import { Text, View } from "react-native";
-import { getMovieByIdAction } from "../../../core/actions/movie/get-movie-by-id.actions";
+import { ActivityIndicator, ScrollView, Text, View } from "react-native";
+
+import { useMovie } from "../../../presentation/hooks/useMovie";
 
 const MovieScreen = () => {
   const { id } = useLocalSearchParams();
-  getMovieByIdAction(+id);
+  const { movieQuery } = useMovie(+id);
+  if (movieQuery.isLoading) {
+    return (
+      <View className="flex flex-1 justify-center items-center">
+        <Text className="mb-4">Espero por favor</Text>
+        <ActivityIndicator color="purple" size={30} />
+      </View>
+    );
+  }
+
   return (
-    <View>
-      <Text>MovieScreen</Text>
-    </View>
+    <ScrollView>
+      <Text>{movieQuery.data?.title ?? "No tiene"}</Text>
+    </ScrollView>
   );
 };
 

@@ -3,7 +3,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import MainSlideshow from "../../../presentation/components/movies/MainSlideshow";
 import MoviesHorizontalList from "../../../presentation/components/movies/MoviesHorizontalList";
-import { useMovies } from "../../../presentation/hooks/useMovie";
+import { useMovies } from "../../../presentation/hooks/useMovies";
 
 const HomeScreen = () => {
   const SafeArea = useSafeAreaInsets();
