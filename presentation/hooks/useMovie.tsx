@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { nowPlayingAction } from "../../core/movies/now-playing.actions";
+import { nowPlayingAction } from "../../core/actions/movies/now-playing.actions";
+import { popularMoviesAction } from "../../core/actions/movies/popular.actions";
 
 export const useMovies = () => {
   const nowPlayingQuery = useQuery({
@@ -7,7 +8,13 @@ export const useMovies = () => {
     queryFn: nowPlayingAction,
     staleTime: 1000 * 60 * 60 * 24,
   });
+  const popularQuery = useQuery({
+    queryKey: ["movies", "popular"],
+    queryFn: popularMoviesAction,
+    staleTime: 1000 * 60 * 60 * 24,
+  });
   return {
     nowPlayingQuery,
+    popularQuery,
   };
 };
