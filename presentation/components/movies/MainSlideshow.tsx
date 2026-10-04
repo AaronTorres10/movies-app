@@ -1,6 +1,7 @@
-import { Text, useWindowDimensions, View } from "react-native";
+import { useWindowDimensions, View } from "react-native";
 import { Carousel } from "react-native-reanimated-carousel";
-import { Movie } from "../../infrastructure/interfaces/movie.interface";
+import { Movie } from "../../../infrastructure/interfaces/movie.interface";
+import MoviesPoster from "./MoviesPoster";
 
 interface Props {
   movies: Movie[];
@@ -10,13 +11,11 @@ const MainSlideshow = ({ movies }: Props) => {
   const { width } = useWindowDimensions();
 
   return (
-    <View className="h-[350px] w-full">
+    <View className="h-[250px] w-full">
       <Carousel
         data={movies}
         renderItem={({ item }) => (
-          <View className="flex-1 items-center justify-center">
-            <Text>{item.title}</Text>
-          </View>
+          <MoviesPoster id={item.id} poster={item.poster} />
         )}
 
         style={{
@@ -24,7 +23,7 @@ const MainSlideshow = ({ movies }: Props) => {
           height: 350,
         }}
 
-        itemSize={180}
+        itemSize={165}
 
         layout={{
           type: "parallax",
